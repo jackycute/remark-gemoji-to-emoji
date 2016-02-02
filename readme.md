@@ -1,4 +1,4 @@
 # remark-emoji
 
 Can render emoji syntax like `:smile:` into 😄  
-Depends on woorm/gemoji
+Mainly depends on [woorm/remark](https://github.com/wooorm/remark) and [woorm/gemoji](https://github.com/wooorm/gemoji)
