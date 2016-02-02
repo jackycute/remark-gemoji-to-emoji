@@ -5,7 +5,7 @@ var remarkGemoji = require('./index.js');
 var gemoji = require('gemoji');
 
 var emojiList = [];
-Object.keys(gemoji.name).forEach(function(key) {
+Object.keys(gemoji.name).forEach(function (key) {
     emojiList.push(':' + key + ':');
 });
 
