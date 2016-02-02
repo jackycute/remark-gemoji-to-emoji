@@ -1,0 +1,5 @@
+components/
+coverage/
+remark-gemoji.js
+remark-gemoji.min.js
+example.js
