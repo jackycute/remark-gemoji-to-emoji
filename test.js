@@ -21,6 +21,8 @@ var remarkGemoji = require('./index.js');
 
 var gemoji = require('gemoji');
 
+var processor = remark().use(remarkGemoji);
+
 var emojiList = [];
 Object.keys(gemoji.name).forEach(function (key) {
     emojiList.push(':' + key + ':');
@@ -36,7 +38,37 @@ Object.keys(gemoji.name).forEach(function (key) {
  */
 
 test('remark-gemoji', function (t) {
-    remark.use(remarkGemoji).process([
+    processor.process(':+1:', function (err, file, doc) {
+        t.ifErr(err);
+
+        t.equal(doc, '👍\n', 'one gemoji');
+    });
+
+    processor.process(':+1::-1:', function (err, file, doc) {
+        t.ifErr(err);
+
+        t.equal(doc, '👍👎\n', 'two gemoji');
+    });
+
+    processor.process('a :+1: b :-1: c', function (err, file, doc) {
+        t.ifErr(err);
+
+        t.equal(doc, 'a 👍 b 👎 c\n', 'two gemoji');
+    });
+
+    processor.process('No colons', function (err, file, doc) {
+        t.ifErr(err);
+
+        t.equal(doc, 'No colons\n', 'no colons');
+    });
+
+    processor.process('One: colon', function (err, file, doc) {
+        t.ifErr(err);
+
+        t.equal(doc, 'One: colon\n', 'one colon');
+    });
+
+    processor.process([
         ':none:',
         emojiList,
         ':not_valid:',
@@ -50,7 +82,7 @@ test('remark-gemoji', function (t) {
             ':not\\_valid:',
             ''
         ].join('\n'));
-
-        t.end();
     });
+
+    t.end();
 });

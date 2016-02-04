@@ -18,6 +18,12 @@
 var visit = require('unist-util-visit');
 var gemoji = require('gemoji');
 
+/*
+ * Methods.
+ */
+
+var has = Object.prototype.hasOwnProperty;
+
 /**
  * Transformer.
  *
@@ -25,41 +31,35 @@ var gemoji = require('gemoji');
  */
 function transformer(tree) {
     visit(tree, 'text', function (node) {
-        var emoticons = {
-            /* :..: */
-            'named': /:([a-z0-9A-Z_-]+):/g,
-            /* :+1: */
-            'thumbsup': /:\+1:/g,
-            /* :-1: */
-            'thumbsdown': /:\-1:/g
-        };
-        node.value = node.value.replace(emoticons.thumbsup,
-                                        gemoji.name['+1'].emoji);
-        node.value = node.value.replace(emoticons.thumbsdown,
-                                        gemoji.name['-1'].emoji);
-        // js mess up with unicode regex
-        // workaround is remember the map first then replace later
-        var match;
-        var matches = [];
-        while ((match = emoticons.named.exec(node.value)) !== null) {
-            var matchGemoji = gemoji.name[match[1]];
-            if (matchGemoji) {
-                matches.push({
-                    'index': match.index,
-                    'str': match[0],
-                    'emoji': matchGemoji.emoji
-                });
+        var value = node.value;
+        var index = value.indexOf(':');
+        var lastIndex = 0;
+        var result = '';
+        var subvalue;
+        var next;
+
+        while (index !== -1) {
+            next = value.indexOf(':', index + 1);
+
+            if (next !== -1) {
+                subvalue = value.slice(index + 1, next);
+
+                if (has.call(gemoji.name, subvalue)) {
+                    result += value.slice(lastIndex, index) +
+                        gemoji.name[subvalue].emoji;
+
+                    lastIndex = next + 1;
+                }
             }
+
+            index = next;
         }
-        // calculate the bias between the replacements
-        var bias = 0;
-        for (var i = 0, l = matches.length; i < l; i++) {
-            match = matches[i];
-            node.value = node.value.substr(0, match.index + bias)
-                + match.emoji
-                + node.value.substr(match.index + match.str.length + bias);
-            bias += match.emoji.length - match.str.length;
+
+        if (lastIndex !== value.length) {
+            result += value.slice(lastIndex);
         }
+
+        node.value = result;
     });
 }
 
