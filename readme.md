@@ -1,6 +1,6 @@
 # remark-gemoji-to-emoji [![Build Status][travis-badge]][travis]
 
-[**remark**][remark] plug-in to transform gemoji shortcodes into emoji unicodes (for example, `:smile:` into 😄)
+[**remark**][remark] plug-in to transform gemoji shortcodes into emoji unicodes
 
 ## Installation
 
@@ -37,7 +37,7 @@ Yields:
 
 ### `remark().use(gemojiToEmoji)`
 
-Transform gemoji shortcodes into emoji unicodes (for example, `:smile:` into 😄).
+Transform gemoji shortcodes into emoji unicodes (like `:smile:` into 😄).
 
 ## License
 
