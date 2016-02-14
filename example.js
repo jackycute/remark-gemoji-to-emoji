@@ -1,6 +1,6 @@
 // Dependencies:
 var remark = require('remark');
-var remarkGemoji = require('./index.js');
+var gemojiToEmoji = require('./index.js');
 
 var gemoji = require('gemoji');
 
@@ -10,7 +10,7 @@ Object.keys(gemoji.name).forEach(function (key) {
 });
 
 // Process:
-var doc = remark().use(remarkGemoji).process([
+var doc = remark().use(gemojiToEmoji).process([
     emojiList,
     ''
 ].join('\n'));

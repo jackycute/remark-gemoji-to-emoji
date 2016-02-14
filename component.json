@@ -1,7 +1,7 @@
 {
-  "name": "remark-gemoji",
+  "name": "remark-gemoji-to-emoji",
   "version": "0.1.0",
-  "description": "Transform emoji syntax into gemoji",
+  "description": "Transform gemoji shortcodes into emoji unicodes",
   "license": "MIT",
   "keywords": [
     "emoji",
@@ -11,7 +11,7 @@
   "dependencies": {
     "wooorm/unist-util-visit": "^1.0.0"
   },
-  "repository": "jackycute/remark-gemoji",
+  "repository": "jackycute/remark-gemoji-to-emoji",
   "scripts": [
     "index.js"
   ]

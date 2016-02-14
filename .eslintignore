@@ -1,5 +1,5 @@
 components/
 coverage/
-remark-gemoji.js
-remark-gemoji.min.js
+remark-gemoji-to-emoji.js
+remark-gemoji-to-emoji.min.js
 example.js

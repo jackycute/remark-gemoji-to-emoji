@@ -1,7 +1,7 @@
 {
-  "name": "remark-gemoji",
+  "name": "remark-gemoji-to-emoji",
   "version": "0.1.0",
-  "description": "Transform emoji syntax into gemoji",
+  "description": "Transform gemoji shortcodes into emoji unicodes",
   "license": "MIT",
   "keywords": [
     "emoji",
@@ -12,7 +12,7 @@
     "gemoji": "^1.0.0",
     "unist-util-visit": "^1.0.0"
   },
-  "repository": "jackycute/remark-gemoji",
+  "repository": "jackycute/remark-gemoji-to-emoji",
   "author": "jackycute",
   "files": [
     "index.js"
@@ -35,8 +35,8 @@
   },
   "scripts": {
     "build-md": "remark . --quiet --frail",
-    "build-bundle": "browserify index.js --no-builtins -s remarkGemoji > remark-gemoji.js",
-    "build-mangle": "esmangle remark-gemoji.js > remark-gemoji.min.js",
+    "build-bundle": "browserify index.js --no-builtins -s gemojiToEmoji > remark-gemoji-to-emoji.js",
+    "build-mangle": "esmangle remark-gemoji-to-emoji.js > remark-gemoji-to-emoji.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint-api": "eslint .",
     "lint-style": "jscs --reporter inline .",

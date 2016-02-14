@@ -17,11 +17,11 @@
 
 var test = require('tape');
 var remark = require('remark');
-var remarkGemoji = require('./index.js');
+var gemojiToEmoji = require('./index.js');
 
 var gemoji = require('gemoji');
 
-var processor = remark().use(remarkGemoji);
+var processor = remark().use(gemojiToEmoji);
 
 var emojiList = [];
 Object.keys(gemoji.name).forEach(function (key) {
@@ -37,7 +37,7 @@ Object.keys(gemoji.name).forEach(function (key) {
  * Tests.
  */
 
-test('remark-gemoji', function (t) {
+test('remark-gemoji-to-emoji', function (t) {
     processor.process(':+1:', function (err, file, doc) {
         t.ifErr(err);
 
