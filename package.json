@@ -1,6 +1,6 @@
 {
   "name": "remark-gemoji-to-emoji",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Transform gemoji shortcodes into emoji unicodes",
   "license": "MIT",
   "keywords": [
