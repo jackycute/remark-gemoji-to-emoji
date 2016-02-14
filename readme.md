@@ -1,4 +1,4 @@
-# remark-gemoji-to-emoji [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# remark-gemoji-to-emoji [![Build Status][travis-badge]][travis]
 
 [**remark**][remark] plug-in to transform gemoji shortcodes into emoji unicodes (for example, `:smile:` into ðŸ˜„)
 
@@ -52,18 +52,10 @@ Transform gemoji shortcodes into emoji unicodes (for example, `:smile:` into ðŸ˜
 
 [travis]: https://travis-ci.org/jackycute/remark-gemoji-to-emoji
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/jackycute/remark-gemoji-to-emoji.svg
-
-[codecov]: https://codecov.io/github/jackycute/remark-gemoji-to-emoji
-
 [npm-install]: https://docs.npmjs.com/cli/install
-
-[releases]: https://github.com/jackycute/remark-gemoji-to-emoji/releases
 
 [license]: LICENSE
 
 [author]: https://github.com/jackycute
 
 [remark]: https://github.com/wooorm/remark
-
-[shields]: http://shields.io
