@@ -17,6 +17,7 @@ Dependencies:
 ```javascript
 var remark = require('remark');
 var gemojiToEmoji = require('remark-gemoji-to-emoji');
+var gemoji = require('gemoji');
 ```
 
 Process:
@@ -29,7 +30,7 @@ var doc = remark().use(gemojiToEmoji).process([
 
 Yields:
 
-```markdown
+```md
 😄 👍
 ```
 
