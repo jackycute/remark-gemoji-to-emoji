@@ -10,9 +10,6 @@
 npm install remark-gemoji-to-emoji
 ```
 
-**remark-gemoji-to-emoji** is also available as an AMD, CommonJS, and globals
-module, [uncompressed and compressed][releases].
-
 ## Usage
 
 Dependencies:
