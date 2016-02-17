@@ -4,7 +4,7 @@
  * @license MIT
  * @module remark:gemoji
  * @fileoverview
- *   Plug-in to transform emoji syntax into gemoji
+ *   Plug-in to transform gemoji shortcodes into emoji unicodes
  */
 
 'use strict';
