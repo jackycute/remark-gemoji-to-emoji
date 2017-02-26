@@ -12,19 +12,12 @@ npm install remark-gemoji-to-emoji
 
 ## Usage
 
-Dependencies:
-
 ```javascript
 var remark = require('remark');
 var gemojiToEmoji = require('remark-gemoji-to-emoji');
-```
 
-Process:
-
-```javascript
-var doc = remark().use(gemojiToEmoji).process([
-    ':smile: :+1:'
-].join('\n'));
+var doc = remark().use(gemojiToEmoji).processSync(':smile: :+1:');
+console.log(doc);
 ```
 
 Yields:
