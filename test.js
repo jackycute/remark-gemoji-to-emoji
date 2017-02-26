@@ -30,7 +30,13 @@ Object.keys(gemoji.name).forEach(function (key) {
 
 var renderedEmojiList = [];
 Object.keys(gemoji.name).forEach(function (key) {
-    renderedEmojiList.push(gemoji.name[key].emoji);
+    var emoji = gemoji.name[key].emoji;
+
+    if (/[#*]/.test(emoji.charAt(0))) {
+        emoji = '\\' + emoji;
+    }
+
+    renderedEmojiList.push(emoji);
 });
 
 /*
@@ -38,48 +44,46 @@ Object.keys(gemoji.name).forEach(function (key) {
  */
 
 test('remark-gemoji-to-emoji', function (t) {
-    processor.process(':+1:', function (err, file, doc) {
+    processor.process(':+1:', function (err, file) {
         t.ifErr(err);
-
-        t.equal(doc, '👍\n', 'one gemoji');
+        t.equal(String(file), '👍\n', 'one gemoji');
     });
 
-    processor.process(':+1::-1:', function (err, file, doc) {
+    processor.process(':+1::-1:', function (err, file) {
         t.ifErr(err);
-
-        t.equal(doc, '👍👎\n', 'two gemoji');
+        t.equal(String(file), '👍👎\n', 'two gemoji');
     });
 
-    processor.process('a :+1: b :-1: c', function (err, file, doc) {
+    processor.process('a :+1: b :-1: c', function (err, file) {
         t.ifErr(err);
 
-        t.equal(doc, 'a 👍 b 👎 c\n', 'two gemoji');
+        t.equal(String(file), 'a 👍 b 👎 c\n', 'two gemoji');
     });
 
-    processor.process('No colons', function (err, file, doc) {
+    processor.process('No colons', function (err, file) {
         t.ifErr(err);
 
-        t.equal(doc, 'No colons\n', 'no colons');
+        t.equal(String(file), 'No colons\n', 'no colons');
     });
 
-    processor.process('One: colon', function (err, file, doc) {
+    processor.process('One: colon', function (err, file) {
         t.ifErr(err);
 
-        t.equal(doc, 'One: colon\n', 'one colon');
+        t.equal(String(file), 'One: colon\n', 'one colon');
     });
 
     processor.process([
         ':none:',
-        emojiList,
+        emojiList.join('\n'),
         ':not_valid:',
         ''
-    ].join('\n'), function (err, file, doc) {
+    ].join('\n'), function (err, file) {
         t.ifErr(err);
 
-        t.equal(doc, [
+        t.equal(String(file), [
             ':none:',
-            renderedEmojiList,
-            ':not\\_valid:',
+            renderedEmojiList.join('\n'),
+            ':not_valid:',
             ''
         ].join('\n'));
     });

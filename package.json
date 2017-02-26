@@ -9,7 +9,7 @@
     "to"
   ],
   "dependencies": {
-    "gemoji": "^1.0.0",
+    "gemoji": "^4.0.0",
     "unist-util-visit": "^1.0.0"
   },
   "repository": "jackycute/remark-gemoji-to-emoji",
@@ -18,31 +18,28 @@
     "index.js"
   ],
   "devDependencies": {
-    "browserify": "^12.0.0",
-    "eslint": "^1.0.0",
+    "browserify": "^14.0.0",
+    "eslint": "^3.0.0",
     "esmangle": "^1.0.0",
     "istanbul": "^0.4.0",
-    "jscs": "^2.0.0",
-    "jscs-jsdoc": "^1.0.0",
-    "remark": "^3.0.0",
-    "remark-comment-config": "^2.0.0",
-    "remark-github": "^2.0.0",
-    "remark-lint": "^2.0.0",
-    "remark-slug": "^3.0.0",
-    "remark-usage": "^2.0.0",
-    "remark-validate-links": "^2.0.0",
+    "remark": "^7.0.0",
+    "remark-cli": "^3.0.0",
+    "remark-preset-wooorm": "^2.0.0",
     "tape": "^4.0.0"
   },
   "scripts": {
-    "build-md": "remark . --quiet --frail",
+    "build-md": "remark . -qfo",
     "build-bundle": "browserify index.js --no-builtins -s gemojiToEmoji > remark-gemoji-to-emoji.js",
     "build-mangle": "esmangle remark-gemoji-to-emoji.js > remark-gemoji-to-emoji.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
+    "lint": "eslint .",
     "test-api": "node test.js",
     "test-coverage": "istanbul cover test.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
