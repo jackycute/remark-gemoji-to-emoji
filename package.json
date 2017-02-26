@@ -20,7 +20,7 @@
   "devDependencies": {
     "browserify": "^14.0.0",
     "esmangle": "^1.0.0",
-    "istanbul": "^0.4.0",
+    "nyc": "^10.1.2",
     "remark": "^7.0.0",
     "remark-cli": "^3.0.0",
     "remark-preset-wooorm": "^2.0.0",
@@ -33,12 +33,18 @@
     "build-mangle": "esmangle remark-gemoji-to-emoji.js > remark-gemoji-to-emoji.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
-    "test-api": "node test.js",
-    "test-coverage": "istanbul cover test.js",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
     "test": "npm run build && npm run lint && npm run test-coverage"
   },
   "xo": {
     "space": true
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
   },
   "remarkConfig": {
     "plugins": [
